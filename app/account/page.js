@@ -1,4 +1,7 @@
-import React from "react";
+
+export const metadata = {
+    title: 'Guest Area'
+}
 
 function Page(props) {
     return (
