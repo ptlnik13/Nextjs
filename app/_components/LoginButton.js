@@ -17,7 +17,7 @@ function LoginButton() {
                         className='h-8 rounded-full'
                         alt={session.user.name}
                         referrerPolicy='no-referrer'/>
-                    <span>Hi, {session.user.name}</span>
+                    <span>Hey, {session.user.name.split(' ')[1]}</span>
                 </Link>
             ) : (
                 <Link
