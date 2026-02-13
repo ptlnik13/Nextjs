@@ -2,6 +2,7 @@
 
 import {auth, signIn, signOut} from "@/app/_lib/auth";
 import {supabase} from "@/app/_lib/supabase";
+import {revalidatePath} from "next/cache";
 
 export async function signInAction(){
     await signIn('google', {redirectTo: '/account'})
@@ -32,4 +33,6 @@ export async function updateGuestAction(formData){
     if (error) {
         throw new Error('Guest could not be updated');
     }
+
+    revalidatePath('/account/profile'); // for cache invalidation
 }
