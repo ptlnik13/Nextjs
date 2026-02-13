@@ -10,6 +10,10 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
+    function resetAuthState(){
+        setUser(null);
+    }
+
     useEffect(() => {
         if (status === 'loading') {
             setLoading(true)
@@ -20,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     }, [session, status])
 
     return (
-        <AuthContext.Provider value={{ user, loading }}>
+        <AuthContext.Provider value={{ user, loading, resetAuthState }}>
             {children}
         </AuthContext.Provider>
     )
