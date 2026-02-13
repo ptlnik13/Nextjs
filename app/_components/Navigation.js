@@ -1,6 +1,9 @@
 import Link from "next/link";
+import LoginButton from "@/app/_components/LoginButton";
 
-export default function Navigation() {
+export default async function Navigation() {
+
+
     return (
         <nav className="z-10 text-xl">
             <ul className="flex gap-16 items-center">
@@ -14,14 +17,7 @@ export default function Navigation() {
                         About
                     </Link>
                 </li>
-                <li>
-                    <Link
-                        href="/account"
-                        className="hover:text-accent-400 transition-colors"
-                    >
-                        Guest area
-                    </Link>
-                </li>
+                <LoginButton/>
             </ul>
         </nav>
     );

@@ -1,6 +1,8 @@
 import Header from "@/app/_components/Header";
 import {Josefin_Sans} from "next/font/google";
-
+import {SessionProvider} from "next-auth/react";
+import {ReservationProvider} from "@/app/_lib/ReservationContext";
+import {AuthProvider} from "@/app/_lib/AuthContext";
 
 const josefin = Josefin_Sans({
     display: 'swap',
@@ -8,7 +10,7 @@ const josefin = Josefin_Sans({
 })
 
 import "@/app/_styles/globals.css";
-import {ReservationProvider} from "@/app/_lib/ReservationContext";
+
 
 export const metadata = {
     title      : {
@@ -21,19 +23,22 @@ export const metadata = {
 
 export default function RootLayout({children}) {
     return (
-        <html lang="en">
-        <body
-            className={` ${josefin.className} antialiased bg-primary-950 text-primary-100 min-h-screen flex flex-col relative`}>
-        <Header/>
-        <div className='flex-1 px-8 py-12 grid'>
-            <main className='max-w-7xl mx-auto w-full'>
-                <ReservationProvider>
-                    {children}
-                </ReservationProvider>
-            </main>
-        </div>
-
-        </body>
-        </html>
+        <SessionProvider>
+            <AuthProvider>
+                <html lang="en">
+                <body
+                    className={` ${josefin.className} antialiased bg-primary-950 text-primary-100 min-h-screen flex flex-col relative`}>
+                <Header/>
+                <div className='flex-1 px-8 py-12 grid'>
+                    <main className='max-w-7xl mx-auto w-full'>
+                        <ReservationProvider>
+                            {children}
+                        </ReservationProvider>
+                    </main>
+                </div>
+                </body>
+                </html>
+            </AuthProvider>
+        </SessionProvider>
     )
 }
