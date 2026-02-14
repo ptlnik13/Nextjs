@@ -7,7 +7,7 @@ function ReservationReminder() {
 
     const {range, resetRange} = useReservation();
 
-    if (!range.from || !range.to) return null;
+    if (!range?.from || !range?.to) return null;
 
     return (
         <div
